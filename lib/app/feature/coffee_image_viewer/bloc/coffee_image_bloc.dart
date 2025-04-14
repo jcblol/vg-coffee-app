@@ -28,7 +28,7 @@ class CoffeeImageViewerBloc extends HydratedBloc<CoffeeImageViewerEvent, CoffeeI
     ToggleSaveImageEvent event,
     Emitter<CoffeeImageViewerState> emit,
   ) async {
-    emit(state.copyWith(savingImage: true));
+    emit(state.copyWith(savingImage: true, errorMessage: null));
     try {
       final updatedSavedImages = List<String>.from(state.savedImages);
       if (updatedSavedImages.contains(event.url)) {
@@ -42,7 +42,7 @@ class CoffeeImageViewerBloc extends HydratedBloc<CoffeeImageViewerEvent, CoffeeI
     } catch (e) {
       emit(
         state.copyWith(
-          errorMessage: 'Failed to update toggle image save',
+          errorMessage: 'Failed to toggle save image',
           savingImage: false,
         ),
       );

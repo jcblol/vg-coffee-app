@@ -107,6 +107,15 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
               }
             },
           ),
+          BlocListener<CoffeeImageViewerBloc, CoffeeImageViewerState>(
+            bloc: coffeeImageViewerBloc,
+            listenWhen: (previous, current) => previous.savingImage && !current.savingImage,
+            listener: (context, state) {
+              if (state.errorMessage != null) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
+              }
+            },
+          ),
         ],
         child: BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState, List<String>>(
           bloc: coffeeImageViewerBloc,
