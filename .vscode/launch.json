@@ -14,7 +14,7 @@
         "--test-randomize-ordering-seed",
         "random",
       ]
-  },
+    },
     {
       "name": "Launch development",
       "request": "launch",
