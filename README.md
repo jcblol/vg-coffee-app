@@ -41,9 +41,9 @@ _\*Vg Coffee App works on iOS, Android, Web, and Windows._
 
 - Double tap the image or press the heart button to save the image
 
-- Davigate to the saved tab to view your images
+- Navigate to the saved tab to view your saved images
 
-- Dap the remove icon to delete a saved image
+- Tap the remove icon to delete a saved image
 
   - Saved images will be available offline
 
