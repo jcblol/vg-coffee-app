@@ -59,7 +59,8 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
             buildWhen: (previous, current) =>
                 previous.currentPage != current.currentPage ||
                 previous.savedImages != current.savedImages ||
-                previous.images != current.images,
+                previous.images != current.images ||
+                previous.savingImage != current.savingImage,
             builder: (context, state) {
               if (state.images.isEmpty || state.currentPage >= state.images.length) {
                 return const SizedBox.shrink();
@@ -68,10 +69,10 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
               final favorited = state.savedImages.contains(imageUrl);
               return FloatingActionButton(
                 shape: const CircleBorder(),
-                onPressed: () {
-                  coffeeImageViewerBloc.add(ToggleSaveImageEvent(imageUrl));
-                },
-                child: Icon(favorited ? Icons.favorite : Icons.favorite_outline),
+                onPressed: () => coffeeImageViewerBloc.add(ToggleSaveImageEvent(imageUrl)),
+                child: state.savingImage
+                    ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator())
+                    : Icon(favorited ? Icons.favorite : Icons.favorite_outline),
               );
             },
           ),
@@ -109,11 +110,10 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
           ),
           BlocListener<CoffeeImageViewerBloc, CoffeeImageViewerState>(
             bloc: coffeeImageViewerBloc,
-            listenWhen: (previous, current) => previous.savingImage && !current.savingImage,
+            listenWhen: (previous, current) =>
+                previous.savingImage && !current.savingImage && current.errorMessage != null,
             listener: (context, state) {
-              if (state.errorMessage != null) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
-              }
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
             },
           ),
         ],
