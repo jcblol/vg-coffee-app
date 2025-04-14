@@ -1,0 +1,11 @@
+include: package:very_good_analysis/analysis_options.6.0.0.yaml
+linter:
+  rules:
+    public_member_api_docs: false
+    lines_longer_than_80_chars: false
+    sort_pub_dependencies: false
+    eol_at_end_of_file: false
+    omit_local_variable_types: false
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
