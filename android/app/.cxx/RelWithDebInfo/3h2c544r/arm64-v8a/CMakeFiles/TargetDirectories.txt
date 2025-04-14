@@ -1,2 +1,0 @@
-C:/Users/jakeb/Desktop/projects/vg_coffee_app/android/app/.cxx/RelWithDebInfo/3h2c544r/arm64-v8a/CMakeFiles/edit_cache.dir
-C:/Users/jakeb/Desktop/projects/vg_coffee_app/android/app/.cxx/RelWithDebInfo/3h2c544r/arm64-v8a/CMakeFiles/rebuild_cache.dir
