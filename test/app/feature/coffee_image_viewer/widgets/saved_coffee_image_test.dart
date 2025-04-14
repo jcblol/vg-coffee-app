@@ -15,17 +15,17 @@ void main() {
 
   const imageUrl = 'http://test.com';
 
-  setUpAll(() async {
+  setUp(() async {
+    await GetIt.I.reset();
+
     mockCoffeeImageViewerBloc = MockCoffeeImageViewerBloc();
     mockCacheService = MockCacheService();
     mockFile = MockFile();
 
     GetIt.I.registerSingleton<FileCacheService>(mockCacheService);
     GetIt.I.registerSingleton<CoffeeImageViewerBloc>(mockCoffeeImageViewerBloc);
-    when(() => mockCacheService.cacheFile(imageUrl))
-        .thenAnswer((_) async => mockFile);
-    when(() => mockCacheService.getCachedFile(imageUrl))
-        .thenAnswer((_) async => mockFile);
+    when(() => mockCacheService.cacheFile(imageUrl)).thenAnswer((_) async => mockFile);
+    when(() => mockCacheService.getCachedFile(imageUrl)).thenAnswer((_) async => mockFile);
     when(() => mockCacheService.removeFile(imageUrl)).thenAnswer((_) async {});
   });
 
@@ -34,15 +34,13 @@ void main() {
       await tester.pumpApp(const SavedCoffeeImage(imageUrl));
       expect(find.byType(SavedCoffeeImage), findsOneWidget);
     });
-    testWidgets('tapping remove icon triggers ToggleSaveImageEvent',
-        (tester) async {
+    testWidgets('tapping remove icon triggers ToggleSaveImageEvent', (tester) async {
       await tester.pumpApp(const SavedCoffeeImage(imageUrl));
       final removeButtonFinder = find.byIcon(Icons.remove_circle_outline);
       expect(removeButtonFinder, findsOneWidget);
       await tester.tap(removeButtonFinder);
       verify(
-        () =>
-            mockCoffeeImageViewerBloc.add(const ToggleSaveImageEvent(imageUrl)),
+        () => mockCoffeeImageViewerBloc.add(const ToggleSaveImageEvent(imageUrl)),
       ).called(1);
     });
   });

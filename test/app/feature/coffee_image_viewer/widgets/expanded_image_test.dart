@@ -14,19 +14,18 @@ void main() {
 
   const imageUrl = 'http://test.com';
 
-  setUpAll(() async {
+  setUp(() async {
+    await GetIt.I.reset();
+
     mockCoffeeImageViewerBloc = MockCoffeeImageViewerBloc();
     mockCacheService = MockCacheService();
     mockFile = MockFile();
 
     GetIt.I.registerSingleton<FileCacheService>(mockCacheService);
     GetIt.I.registerSingleton<CoffeeImageViewerBloc>(mockCoffeeImageViewerBloc);
-    when(() => mockCoffeeImageViewerBloc.state)
-        .thenReturn(const CoffeeImageViewerState());
-    when(() => mockCoffeeImageViewerBloc.stream)
-        .thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
-    when(() => mockCacheService.getCachedFile(imageUrl))
-        .thenAnswer((_) async => mockFile);
+    when(() => mockCoffeeImageViewerBloc.state).thenReturn(const CoffeeImageViewerState());
+    when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
+    when(() => mockCacheService.getCachedFile(imageUrl)).thenAnswer((_) async => mockFile);
   });
 
   group('ExpandedImage', () {
