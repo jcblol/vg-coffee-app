@@ -29,13 +29,12 @@ class CoffeeImageViewerBloc extends HydratedBloc<CoffeeImageViewerEvent, CoffeeI
     Emitter<CoffeeImageViewerState> emit,
   ) async {
     try {
-      emit(state.copyWith(errorMessage: null));
+      emit(state.copyWith(errorMessage: null, savingImage: true));
       final updatedSavedImages = List<String>.from(state.savedImages);
       if (updatedSavedImages.contains(event.url)) {
         await _cacheService.removeFile(event.url);
         updatedSavedImages.remove(event.url);
       } else {
-        emit(state.copyWith(savingImage: true));
         await _cacheService.cacheFile(event.url);
         updatedSavedImages.add(event.url);
       }
