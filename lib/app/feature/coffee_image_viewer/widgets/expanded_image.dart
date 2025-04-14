@@ -13,20 +13,24 @@ class ExpandedImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState, List<String>>(
+      body: BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState,
+          List<String>>(
         bloc: GetIt.I<CoffeeImageViewerBloc>(),
         selector: (state) {
           return state.savedImages;
         },
         builder: (context, savedImages) {
           return PageView.builder(
-            controller: PageController(initialPage: savedImages.indexOf(initialImage)),
+            controller:
+                PageController(initialPage: savedImages.indexOf(initialImage)),
             itemCount: savedImages.length,
             itemBuilder: (context, pageIndex) {
               return FutureBuilder<File?>(
-                future: GetIt.I<FileCacheService>().getCachedFile(savedImages[pageIndex]),
+                future: GetIt.I<FileCacheService>()
+                    .getCachedFile(savedImages[pageIndex]),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState != ConnectionState.done || snapshot.data == null) {
+                  if (snapshot.connectionState != ConnectionState.done ||
+                      snapshot.data == null) {
                     return const Center(child: CircularProgressIndicator());
                   }
                   return InteractiveViewer(

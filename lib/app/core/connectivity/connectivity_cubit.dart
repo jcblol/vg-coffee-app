@@ -6,7 +6,9 @@ import 'package:injectable/injectable.dart';
 @singleton
 class ConnectivityCubit extends Cubit<bool> {
   ConnectivityCubit() : super(true) {
-    _subscription = Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> results) {
+    _subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((List<ConnectivityResult> results) {
       final isConnected = results.contains(ConnectivityResult.wifi) ||
           results.contains(ConnectivityResult.mobile) ||
           results.contains(ConnectivityResult.ethernet);

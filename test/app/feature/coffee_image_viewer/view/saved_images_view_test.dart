@@ -28,12 +28,17 @@ void main() {
     GetIt.I.registerSingleton<CoffeeImageViewerBloc>(mockCoffeeImageViewerBloc);
     GetIt.I.registerSingleton<ConnectivityCubit>(mockConnectivityCubit);
 
-    when(() => mockCoffeeImageViewerBloc.state).thenReturn(const CoffeeImageViewerState());
-    when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
+    when(() => mockCoffeeImageViewerBloc.state)
+        .thenReturn(const CoffeeImageViewerState());
+    when(() => mockCoffeeImageViewerBloc.stream)
+        .thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
     when(() => mockConnectivityCubit.state).thenReturn(true);
-    when(() => mockConnectivityCubit.stream).thenAnswer((_) => Stream.value(true));
-    when(() => mockCacheService.getCachedFile(imageUrl)).thenAnswer((_) async => mockFile);
-    when(() => mockCacheService.getCachedFile('$imageUrl/2')).thenAnswer((_) async => mockFile);
+    when(() => mockConnectivityCubit.stream)
+        .thenAnswer((_) => Stream.value(true));
+    when(() => mockCacheService.getCachedFile(imageUrl))
+        .thenAnswer((_) async => mockFile);
+    when(() => mockCacheService.getCachedFile('$imageUrl/2'))
+        .thenAnswer((_) async => mockFile);
   });
 
   group('SavedImagesView', () {
@@ -41,21 +46,29 @@ void main() {
       await tester.pumpApp(const SavedImagesView());
       expect(find.byType(SavedImagesView), findsOneWidget);
     });
-    testWidgets('shows "No saved images" when there are no saved images', (tester) async {
-      when(() => mockCoffeeImageViewerBloc.state).thenReturn(const CoffeeImageViewerState());
-      when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
+    testWidgets('shows "No saved images" when there are no saved images',
+        (tester) async {
+      when(() => mockCoffeeImageViewerBloc.state)
+          .thenReturn(const CoffeeImageViewerState());
+      when(() => mockCoffeeImageViewerBloc.stream)
+          .thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
       await tester.pumpApp(const SavedImagesView());
       await tester.pumpAndSettle();
       expect(find.text('No saved images'), findsOneWidget);
       expect(find.byType(GridView), findsNothing);
     });
 
-    testWidgets('displays GridView with SavedCoffeeImage when saved images exist', (tester) async {
-      const testState = CoffeeImageViewerState(savedImages: [imageUrl, '$imageUrl/2']);
+    testWidgets(
+        'displays GridView with SavedCoffeeImage when saved images exist',
+        (tester) async {
+      const testState =
+          CoffeeImageViewerState(savedImages: [imageUrl, '$imageUrl/2']);
       when(() => mockCoffeeImageViewerBloc.state).thenReturn(testState);
-      when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(testState));
+      when(() => mockCoffeeImageViewerBloc.stream)
+          .thenAnswer((_) => Stream.value(testState));
       when(() => mockConnectivityCubit.state).thenReturn(true);
-      when(() => mockConnectivityCubit.stream).thenAnswer((_) => Stream.value(true));
+      when(() => mockConnectivityCubit.stream)
+          .thenAnswer((_) => Stream.value(true));
       await tester.pumpApp(const SavedImagesView());
       expect(find.byType(GridView), findsOneWidget);
       expect(find.byType(SavedCoffeeImage), findsNWidgets(2));

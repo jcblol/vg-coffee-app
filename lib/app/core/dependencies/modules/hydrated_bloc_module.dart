@@ -8,8 +8,9 @@ abstract class HydratedBlocModule {
   @preResolve
   Future<HydratedStorage> init() async {
     return HydratedBloc.storage = await HydratedStorage.build(
-      storageDirectory:
-          kIsWeb ? HydratedStorageDirectory.web : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+      storageDirectory: kIsWeb
+          ? HydratedStorageDirectory.web
+          : HydratedStorageDirectory((await getTemporaryDirectory()).path),
     );
   }
 }

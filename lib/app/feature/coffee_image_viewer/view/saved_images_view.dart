@@ -9,7 +9,8 @@ class SavedImagesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState, List<String>>(
+    return BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState,
+        List<String>>(
       bloc: GetIt.I<CoffeeImageViewerBloc>(),
       selector: (state) {
         return state.savedImages;
@@ -27,7 +28,8 @@ class SavedImagesView extends StatelessWidget {
           ),
           itemCount: savedImages.length,
           itemBuilder: (context, index) {
-            return SavedCoffeeImage(key: ValueKey(savedImages[index]), savedImages[index]);
+            return SavedCoffeeImage(
+                key: ValueKey(savedImages[index]), savedImages[index]);
           },
         );
       },

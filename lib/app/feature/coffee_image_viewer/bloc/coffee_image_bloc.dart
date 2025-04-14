@@ -9,8 +9,10 @@ part 'coffee_image_bloc.freezed.dart';
 part 'coffee_image_bloc.g.dart';
 
 @singleton
-class CoffeeImageViewerBloc extends HydratedBloc<CoffeeImageViewerEvent, CoffeeImageViewerState> {
-  CoffeeImageViewerBloc(this._repo, this._cacheService) : super(const CoffeeImageViewerState()) {
+class CoffeeImageViewerBloc
+    extends HydratedBloc<CoffeeImageViewerEvent, CoffeeImageViewerState> {
+  CoffeeImageViewerBloc(this._repo, this._cacheService)
+      : super(const CoffeeImageViewerState()) {
     on(
       (CoffeeImageViewerEvent anyEvent, emit) => anyEvent.map(
         loadImagesEvent: (value) => _loadImages(value, emit),
@@ -24,7 +26,8 @@ class CoffeeImageViewerBloc extends HydratedBloc<CoffeeImageViewerEvent, CoffeeI
 
   // caches a list of urls in our bloc state
   // caches saved image files for use offline
-  Future<void> _toggleSave(ToggleSaveImageEvent event, Emitter<CoffeeImageViewerState> emit) async {
+  Future<void> _toggleSave(
+      ToggleSaveImageEvent event, Emitter<CoffeeImageViewerState> emit) async {
     emit(state.copyWith(savingImage: true));
     try {
       final updatedSavedImages = List<String>.from(state.savedImages);
@@ -37,31 +40,44 @@ class CoffeeImageViewerBloc extends HydratedBloc<CoffeeImageViewerEvent, CoffeeI
       }
       emit(state.copyWith(savedImages: updatedSavedImages, savingImage: false));
     } catch (e) {
-      emit(state.copyWith(errorMessage: 'Failed to update toggle image save', savingImage: false));
+      emit(state.copyWith(
+          errorMessage: 'Failed to update toggle image save',
+          savingImage: false));
       print(e);
     }
   }
 
   // loads 5 images in advance
   // sets our expected image window for caching based on the current page
-  Future<void> _loadImages(LoadImagesEvent event, Emitter<CoffeeImageViewerState> emit) async {
+  Future<void> _loadImages(
+      LoadImagesEvent event, Emitter<CoffeeImageViewerState> emit) async {
     try {
-      final numImagesToLoad = max(0, event.currentPage - state.images.length + 5);
-      emit(state.copyWith(loadingImage: true, errorMessage: null, currentPage: event.currentPage));
+      final numImagesToLoad =
+          max(0, event.currentPage - state.images.length + 5);
+      emit(state.copyWith(
+          loadingImage: true,
+          errorMessage: null,
+          currentPage: event.currentPage));
 
       if (numImagesToLoad > 0) {
-        final newImages = await Future.wait(List.generate(numImagesToLoad, (_) => _repo.getCoffeeImage()));
-        emit(state.copyWith(images: List.from(state.images)..addAll(newImages.map((image) => image.file))));
+        final newImages = await Future.wait(
+            List.generate(numImagesToLoad, (_) => _repo.getCoffeeImage()));
+        emit(state.copyWith(
+            images: List.from(state.images)
+              ..addAll(newImages.map((image) => image.file))));
       }
 
       final totalImages = state.images.length;
       final int windowStart = (event.currentPage - 5).clamp(0, totalImages - 1);
       final int windowEnd = (event.currentPage + 5).clamp(0, totalImages - 1);
-      final Set<int> imageWindow = {for (int i = windowStart; i <= windowEnd; i++) i};
+      final Set<int> imageWindow = {
+        for (int i = windowStart; i <= windowEnd; i++) i
+      };
 
       emit(state.copyWith(imageWindow: imageWindow, loadingImage: false));
     } catch (e) {
-      emit(state.copyWith(loadingImage: false, errorMessage: 'Failed to load image'));
+      emit(state.copyWith(
+          loadingImage: false, errorMessage: 'Failed to load image'));
       print(e);
     }
   }
@@ -80,8 +96,10 @@ class CoffeeImageViewerBloc extends HydratedBloc<CoffeeImageViewerEvent, CoffeeI
 
 @Freezed()
 class CoffeeImageViewerEvent with _$CoffeeImageViewerEvent {
-  const factory CoffeeImageViewerEvent.loadImagesEvent(int currentPage) = LoadImagesEvent;
-  const factory CoffeeImageViewerEvent.toggleSaveImageEvent(String url) = ToggleSaveImageEvent;
+  const factory CoffeeImageViewerEvent.loadImagesEvent(int currentPage) =
+      LoadImagesEvent;
+  const factory CoffeeImageViewerEvent.toggleSaveImageEvent(String url) =
+      ToggleSaveImageEvent;
 }
 
 @freezed
@@ -95,5 +113,6 @@ class CoffeeImageViewerState with _$CoffeeImageViewerState {
     @Default([]) List<String> savedImages,
     @Default({}) Set<int> imageWindow,
   }) = _CoffeeImageViewerState;
-  factory CoffeeImageViewerState.fromJson(Map<String, dynamic> json) => _$CoffeeImageViewerStateFromJson(json);
+  factory CoffeeImageViewerState.fromJson(Map<String, dynamic> json) =>
+      _$CoffeeImageViewerStateFromJson(json);
 }

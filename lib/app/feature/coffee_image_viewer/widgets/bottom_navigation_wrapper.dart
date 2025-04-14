@@ -12,10 +12,12 @@ class BottomNavigationWrapper extends StatefulWidget {
   final List<Widget> children;
 
   @override
-  State<BottomNavigationWrapper> createState() => _BottomNavigationWrapperState();
+  State<BottomNavigationWrapper> createState() =>
+      _BottomNavigationWrapperState();
 }
 
-class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> with TickerProviderStateMixin {
+class _BottomNavigationWrapperState extends State<BottomNavigationWrapper>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
