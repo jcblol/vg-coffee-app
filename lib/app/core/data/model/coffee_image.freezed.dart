@@ -28,22 +28,19 @@ mixin _$CoffeeImage {
   /// Create a copy of CoffeeImage
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CoffeeImageCopyWith<CoffeeImage> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CoffeeImageCopyWith<CoffeeImage> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CoffeeImageCopyWith<$Res> {
-  factory $CoffeeImageCopyWith(
-          CoffeeImage value, $Res Function(CoffeeImage) then) =
+  factory $CoffeeImageCopyWith(CoffeeImage value, $Res Function(CoffeeImage) then) =
       _$CoffeeImageCopyWithImpl<$Res, CoffeeImage>;
   @useResult
   $Res call({String file});
 }
 
 /// @nodoc
-class _$CoffeeImageCopyWithImpl<$Res, $Val extends CoffeeImage>
-    implements $CoffeeImageCopyWith<$Res> {
+class _$CoffeeImageCopyWithImpl<$Res, $Val extends CoffeeImage> implements $CoffeeImageCopyWith<$Res> {
   _$CoffeeImageCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -68,10 +65,8 @@ class _$CoffeeImageCopyWithImpl<$Res, $Val extends CoffeeImage>
 }
 
 /// @nodoc
-abstract class _$$CoffeeImageImplCopyWith<$Res>
-    implements $CoffeeImageCopyWith<$Res> {
-  factory _$$CoffeeImageImplCopyWith(
-          _$CoffeeImageImpl value, $Res Function(_$CoffeeImageImpl) then) =
+abstract class _$$CoffeeImageImplCopyWith<$Res> implements $CoffeeImageCopyWith<$Res> {
+  factory _$$CoffeeImageImplCopyWith(_$CoffeeImageImpl value, $Res Function(_$CoffeeImageImpl) then) =
       __$$CoffeeImageImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -79,11 +74,9 @@ abstract class _$$CoffeeImageImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$CoffeeImageImplCopyWithImpl<$Res>
-    extends _$CoffeeImageCopyWithImpl<$Res, _$CoffeeImageImpl>
+class __$$CoffeeImageImplCopyWithImpl<$Res> extends _$CoffeeImageCopyWithImpl<$Res, _$CoffeeImageImpl>
     implements _$$CoffeeImageImplCopyWith<$Res> {
-  __$$CoffeeImageImplCopyWithImpl(
-      _$CoffeeImageImpl _value, $Res Function(_$CoffeeImageImpl) _then)
+  __$$CoffeeImageImplCopyWithImpl(_$CoffeeImageImpl _value, $Res Function(_$CoffeeImageImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoffeeImage
@@ -107,8 +100,7 @@ class __$$CoffeeImageImplCopyWithImpl<$Res>
 class _$CoffeeImageImpl implements _CoffeeImage {
   const _$CoffeeImageImpl({required this.file});
 
-  factory _$CoffeeImageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CoffeeImageImplFromJson(json);
+  factory _$CoffeeImageImpl.fromJson(Map<String, dynamic> json) => _$$CoffeeImageImplFromJson(json);
 
   @override
   final String file;
@@ -149,8 +141,7 @@ class _$CoffeeImageImpl implements _CoffeeImage {
 abstract class _CoffeeImage implements CoffeeImage {
   const factory _CoffeeImage({required final String file}) = _$CoffeeImageImpl;
 
-  factory _CoffeeImage.fromJson(Map<String, dynamic> json) =
-      _$CoffeeImageImpl.fromJson;
+  factory _CoffeeImage.fromJson(Map<String, dynamic> json) = _$CoffeeImageImpl.fromJson;
 
   @override
   String get file;
@@ -159,6 +150,5 @@ abstract class _CoffeeImage implements CoffeeImage {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CoffeeImageImplCopyWith<_$CoffeeImageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoffeeImageImplCopyWith<_$CoffeeImageImpl> get copyWith => throw _privateConstructorUsedError;
 }

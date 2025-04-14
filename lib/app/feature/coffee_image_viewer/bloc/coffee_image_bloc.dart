@@ -9,10 +9,8 @@ part 'coffee_image_bloc.freezed.dart';
 part 'coffee_image_bloc.g.dart';
 
 @singleton
-class CoffeeImageViewerBloc
-    extends HydratedBloc<CoffeeImageViewerEvent, CoffeeImageViewerState> {
-  CoffeeImageViewerBloc(this._repo, this._cacheService)
-      : super(const CoffeeImageViewerState()) {
+class CoffeeImageViewerBloc extends HydratedBloc<CoffeeImageViewerEvent, CoffeeImageViewerState> {
+  CoffeeImageViewerBloc(this._repo, this._cacheService) : super(const CoffeeImageViewerState()) {
     on(
       (CoffeeImageViewerEvent anyEvent, emit) => anyEvent.map(
         loadImagesEvent: (value) => _loadImages(value, emit),
@@ -59,8 +57,7 @@ class CoffeeImageViewerBloc
     Emitter<CoffeeImageViewerState> emit,
   ) async {
     try {
-      final numImagesToLoad =
-          max(0, event.currentPage - state.images.length + 5);
+      final numImagesToLoad = max(0, event.currentPage - state.images.length + 5);
       emit(
         state.copyWith(
           loadingImage: true,
@@ -75,8 +72,7 @@ class CoffeeImageViewerBloc
         );
         emit(
           state.copyWith(
-            images: List.from(state.images)
-              ..addAll(newImages.map((image) => image.file)),
+            images: List.from(state.images)..addAll(newImages.map((image) => image.file)),
           ),
         );
       }
@@ -114,10 +110,8 @@ class CoffeeImageViewerBloc
 
 @Freezed()
 class CoffeeImageViewerEvent with _$CoffeeImageViewerEvent {
-  const factory CoffeeImageViewerEvent.loadImagesEvent(int currentPage) =
-      LoadImagesEvent;
-  const factory CoffeeImageViewerEvent.toggleSaveImageEvent(String url) =
-      ToggleSaveImageEvent;
+  const factory CoffeeImageViewerEvent.loadImagesEvent(int currentPage) = LoadImagesEvent;
+  const factory CoffeeImageViewerEvent.toggleSaveImageEvent(String url) = ToggleSaveImageEvent;
 }
 
 @freezed
@@ -131,6 +125,5 @@ class CoffeeImageViewerState with _$CoffeeImageViewerState {
     @Default([]) List<String> savedImages,
     @Default({}) Set<int> imageWindow,
   }) = _CoffeeImageViewerState;
-  factory CoffeeImageViewerState.fromJson(Map<String, dynamic> json) =>
-      _$CoffeeImageViewerStateFromJson(json);
+  factory CoffeeImageViewerState.fromJson(Map<String, dynamic> json) => _$CoffeeImageViewerStateFromJson(json);
 }

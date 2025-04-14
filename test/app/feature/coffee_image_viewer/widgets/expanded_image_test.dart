@@ -23,12 +23,9 @@ void main() {
 
     GetIt.I.registerSingleton<FileCacheService>(mockCacheService);
     GetIt.I.registerSingleton<CoffeeImageViewerBloc>(mockCoffeeImageViewerBloc);
-    when(() => mockCoffeeImageViewerBloc.state)
-        .thenReturn(const CoffeeImageViewerState());
-    when(() => mockCoffeeImageViewerBloc.stream)
-        .thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
-    when(() => mockCacheService.getCachedFile(imageUrl))
-        .thenAnswer((_) async => mockFile);
+    when(() => mockCoffeeImageViewerBloc.state).thenReturn(const CoffeeImageViewerState());
+    when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
+    when(() => mockCacheService.getCachedFile(imageUrl)).thenAnswer((_) async => mockFile);
   });
 
   group('ExpandedImage', () {

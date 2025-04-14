@@ -18,8 +18,7 @@ class SavedCoffeeImage extends StatelessWidget {
         FutureBuilder<File?>(
           future: GetIt.I<FileCacheService>().getCachedFile(coffeeImage),
           builder: (context, snapshot) {
-            if (snapshot.connectionState != ConnectionState.done ||
-                snapshot.data == null) {
+            if (snapshot.connectionState != ConnectionState.done || snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
             }
             return GestureDetector(
@@ -49,8 +48,7 @@ class SavedCoffeeImage extends StatelessWidget {
           alignment: Alignment.topRight,
           child: IconButton(
             icon: const Icon(Icons.remove_circle_outline),
-            onPressed: () => GetIt.I<CoffeeImageViewerBloc>()
-                .add(ToggleSaveImageEvent(coffeeImage)),
+            onPressed: () => GetIt.I<CoffeeImageViewerBloc>().add(ToggleSaveImageEvent(coffeeImage)),
           ),
         ),
       ],

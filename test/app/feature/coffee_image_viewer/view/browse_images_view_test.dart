@@ -24,13 +24,10 @@ void main() {
     GetIt.I.registerSingleton<CoffeeImageViewerBloc>(mockCoffeeImageViewerBloc);
     GetIt.I.registerSingleton<ConnectivityCubit>(mockConnectivityCubit);
 
-    when(() => mockCoffeeImageViewerBloc.state)
-        .thenReturn(const CoffeeImageViewerState());
-    when(() => mockCoffeeImageViewerBloc.stream)
-        .thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
+    when(() => mockCoffeeImageViewerBloc.state).thenReturn(const CoffeeImageViewerState());
+    when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(const CoffeeImageViewerState()));
     when(() => mockConnectivityCubit.state).thenReturn(true);
-    when(() => mockConnectivityCubit.stream)
-        .thenAnswer((_) => Stream.value(true));
+    when(() => mockConnectivityCubit.stream).thenAnswer((_) => Stream.value(true));
   });
 
   group('BrowseImagesView', () {
@@ -40,31 +37,27 @@ void main() {
     });
 
     group('control widgets', () {
-      testWidgets('shows correct favorite icon when image not favorited',
-          (WidgetTester tester) async {
+      testWidgets('shows correct favorite icon when image not favorited', (WidgetTester tester) async {
         const testState = CoffeeImageViewerState(
           images: [imageUrl],
         );
 
         when(() => mockCoffeeImageViewerBloc.state).thenReturn(testState);
-        when(() => mockCoffeeImageViewerBloc.stream)
-            .thenAnswer((_) => Stream.value(testState));
+        when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(testState));
 
         await tester.pumpApp(const BrowseImagesView());
         await tester.pumpAndSettle();
 
         expect(find.byIcon(Icons.favorite_outline), findsOneWidget);
       });
-      testWidgets('shows correct favorite icon when image is favorited',
-          (WidgetTester tester) async {
+      testWidgets('shows correct favorite icon when image is favorited', (WidgetTester tester) async {
         const testState = CoffeeImageViewerState(
           images: [imageUrl],
           savedImages: [imageUrl],
         );
 
         when(() => mockCoffeeImageViewerBloc.state).thenReturn(testState);
-        when(() => mockCoffeeImageViewerBloc.stream)
-            .thenAnswer((_) => Stream.value(testState));
+        when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(testState));
 
         await tester.pumpApp(const BrowseImagesView());
         await tester.pumpAndSettle();
@@ -72,16 +65,14 @@ void main() {
         expect(find.byIcon(Icons.favorite), findsExactly(2));
       });
 
-      testWidgets('hides favorite icon when image not loaded',
-          (WidgetTester tester) async {
+      testWidgets('hides favorite icon when image not loaded', (WidgetTester tester) async {
         const testState = CoffeeImageViewerState(
           images: [imageUrl],
           currentPage: 1,
         );
 
         when(() => mockCoffeeImageViewerBloc.state).thenReturn(testState);
-        when(() => mockCoffeeImageViewerBloc.stream)
-            .thenAnswer((_) => Stream.value(testState));
+        when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(testState));
 
         await tester.pumpApp(const BrowseImagesView());
         await tester.pumpAndSettle();
@@ -89,15 +80,12 @@ void main() {
         expect(find.byIcon(Icons.favorite), findsOneWidget);
       });
 
-      testWidgets(
-          'tapping next and previous buttons triggers page change events',
-          (tester) async {
+      testWidgets('tapping next and previous buttons triggers page change events', (tester) async {
         const testState = CoffeeImageViewerState(
           images: [imageUrl, '$imageUrl/2'],
         );
         when(() => mockCoffeeImageViewerBloc.state).thenReturn(testState);
-        when(() => mockCoffeeImageViewerBloc.stream)
-            .thenAnswer((_) => Stream.value(testState));
+        when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(testState));
 
         await tester.pumpApp(const BrowseImagesView());
         await tester.pumpAndSettle();
@@ -107,25 +95,21 @@ void main() {
         expect(nextButtonFinder, findsOneWidget);
         await tester.tap(nextButtonFinder);
         await tester.pumpAndSettle();
-        verify(() => mockCoffeeImageViewerBloc.add(const LoadImagesEvent(1)))
-            .called(1);
+        verify(() => mockCoffeeImageViewerBloc.add(const LoadImagesEvent(1))).called(1);
 
         final prevButtonFinder = find.byIcon(Icons.arrow_upward);
         expect(prevButtonFinder, findsOneWidget);
         await tester.tap(prevButtonFinder);
         await tester.pumpAndSettle();
-        verify(() => mockCoffeeImageViewerBloc.add(const LoadImagesEvent(0)))
-            .called(1);
+        verify(() => mockCoffeeImageViewerBloc.add(const LoadImagesEvent(0))).called(1);
       });
 
-      testWidgets('tapping on CoffeeImage triggers ToggleSaveImageEvent',
-          (tester) async {
+      testWidgets('tapping on CoffeeImage triggers ToggleSaveImageEvent', (tester) async {
         const testState = CoffeeImageViewerState(
           images: [imageUrl],
         );
         when(() => mockCoffeeImageViewerBloc.state).thenReturn(testState);
-        when(() => mockCoffeeImageViewerBloc.stream)
-            .thenAnswer((_) => Stream.value(testState));
+        when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(testState));
         await tester.pumpApp(const BrowseImagesView());
 
         final coffeeImageFinder = find.byType(CoffeeImage);
@@ -136,37 +120,32 @@ void main() {
         await tester.tap(coffeeImageFinder);
         await tester.pumpAndSettle();
         verify(
-          () => mockCoffeeImageViewerBloc
-              .add(const ToggleSaveImageEvent(imageUrl)),
+          () => mockCoffeeImageViewerBloc.add(const ToggleSaveImageEvent(imageUrl)),
         ).called(1);
       });
     });
 
     group('Image display', () {
-      testWidgets('shows progress indicator when image is loading',
-          (tester) async {
+      testWidgets('shows progress indicator when image is loading', (tester) async {
         const testState = CoffeeImageViewerState(
           currentPage: 1,
         );
         when(() => mockCoffeeImageViewerBloc.state).thenReturn(testState);
-        when(() => mockCoffeeImageViewerBloc.stream)
-            .thenAnswer((_) => Stream.value(testState));
+        when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(testState));
         await tester.pumpApp(const BrowseImagesView());
         expect(find.byType(CircularProgressIndicator), findsOneWidget);
       });
       testWidgets('shows image when loaded', (tester) async {
         const testState = CoffeeImageViewerState(images: [imageUrl]);
         when(() => mockCoffeeImageViewerBloc.state).thenReturn(testState);
-        when(() => mockCoffeeImageViewerBloc.stream)
-            .thenAnswer((_) => Stream.value(testState));
+        when(() => mockCoffeeImageViewerBloc.stream).thenAnswer((_) => Stream.value(testState));
         await tester.pumpApp(const BrowseImagesView());
         await tester.pumpAndSettle();
         expect(find.byType(CoffeeImage), findsOneWidget);
       });
     });
     group('Connection status', () {
-      testWidgets('shows no connection message when connectivity is false',
-          (tester) async {
+      testWidgets('shows no connection message when connectivity is false', (tester) async {
         const testConnectivity = false;
         when(() => mockConnectivityCubit.state).thenReturn(testConnectivity);
         await tester.pumpApp(const BrowseImagesView());
@@ -177,8 +156,7 @@ void main() {
         );
       });
 
-      testWidgets('does not show connection warning when connectivity is true',
-          (tester) async {
+      testWidgets('does not show connection warning when connectivity is true', (tester) async {
         const testConnectivity = true;
         when(() => mockConnectivityCubit.state).thenReturn(testConnectivity);
         await tester.pumpApp(const BrowseImagesView());

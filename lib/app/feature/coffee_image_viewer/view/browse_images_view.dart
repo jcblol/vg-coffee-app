@@ -61,8 +61,7 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
                 previous.savedImages != current.savedImages ||
                 previous.images != current.images,
             builder: (context, state) {
-              if (state.images.isEmpty ||
-                  state.currentPage >= state.images.length) {
+              if (state.images.isEmpty || state.currentPage >= state.images.length) {
                 return const SizedBox.shrink();
               }
               final imageUrl = state.images[state.currentPage];
@@ -72,8 +71,7 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
                 onPressed: () {
                   coffeeImageViewerBloc.add(ToggleSaveImageEvent(imageUrl));
                 },
-                child:
-                    Icon(favorited ? Icons.favorite : Icons.favorite_outline),
+                child: Icon(favorited ? Icons.favorite : Icons.favorite_outline),
               );
             },
           ),
@@ -86,8 +84,7 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
           BlocListener<CoffeeImageViewerBloc, CoffeeImageViewerState>(
             bloc: coffeeImageViewerBloc,
             listener: (context, state) {
-              final newIndices =
-                  state.imageWindow.difference(_cachedImageWindow);
+              final newIndices = state.imageWindow.difference(_cachedImageWindow);
               for (final i in newIndices) {
                 if (i < state.images.length) {
                   precacheImage(NetworkImage(state.images[i]), context);
@@ -95,8 +92,7 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
               }
               _cachedImageWindow = state.imageWindow;
             },
-            listenWhen: (previous, current) =>
-                previous.imageWindow != current.imageWindow,
+            listenWhen: (previous, current) => previous.imageWindow != current.imageWindow,
           ),
           // Reloads the current image (and any subsequent cache window images)
           // in the event of a reconnection
@@ -112,8 +108,7 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
             },
           ),
         ],
-        child: BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState,
-            List<String>>(
+        child: BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState, List<String>>(
           bloc: coffeeImageViewerBloc,
           selector: (state) {
             return state.images;
@@ -122,14 +117,12 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
             return PageView.builder(
               scrollDirection: Axis.vertical,
               controller: _pageController,
-              onPageChanged: (page) =>
-                  coffeeImageViewerBloc.add(LoadImagesEvent(page)),
+              onPageChanged: (page) => coffeeImageViewerBloc.add(LoadImagesEvent(page)),
               itemBuilder: (context, index) {
                 return images.length <= index
                     ? const Center(child: CircularProgressIndicator())
                     : CoffeeImage(
-                        onTap: () => coffeeImageViewerBloc
-                            .add(ToggleSaveImageEvent(images[index])),
+                        onTap: () => coffeeImageViewerBloc.add(ToggleSaveImageEvent(images[index])),
                         child: Image.network(
                           images[index],
                           fit: BoxFit.contain,

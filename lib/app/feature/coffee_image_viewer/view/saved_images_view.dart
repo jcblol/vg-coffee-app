@@ -9,8 +9,7 @@ class SavedImagesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState,
-        List<String>>(
+    return BlocSelector<CoffeeImageViewerBloc, CoffeeImageViewerState, List<String>>(
       bloc: GetIt.I<CoffeeImageViewerBloc>(),
       selector: (state) {
         return state.savedImages;

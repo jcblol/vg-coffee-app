@@ -58,14 +58,12 @@ mixin _$CoffeeImageViewerEvent {
 
 /// @nodoc
 abstract class $CoffeeImageViewerEventCopyWith<$Res> {
-  factory $CoffeeImageViewerEventCopyWith(CoffeeImageViewerEvent value,
-          $Res Function(CoffeeImageViewerEvent) then) =
+  factory $CoffeeImageViewerEventCopyWith(CoffeeImageViewerEvent value, $Res Function(CoffeeImageViewerEvent) then) =
       _$CoffeeImageViewerEventCopyWithImpl<$Res, CoffeeImageViewerEvent>;
 }
 
 /// @nodoc
-class _$CoffeeImageViewerEventCopyWithImpl<$Res,
-        $Val extends CoffeeImageViewerEvent>
+class _$CoffeeImageViewerEventCopyWithImpl<$Res, $Val extends CoffeeImageViewerEvent>
     implements $CoffeeImageViewerEventCopyWith<$Res> {
   _$CoffeeImageViewerEventCopyWithImpl(this._value, this._then);
 
@@ -80,8 +78,7 @@ class _$CoffeeImageViewerEventCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$LoadImagesEventImplCopyWith<$Res> {
-  factory _$$LoadImagesEventImplCopyWith(_$LoadImagesEventImpl value,
-          $Res Function(_$LoadImagesEventImpl) then) =
+  factory _$$LoadImagesEventImplCopyWith(_$LoadImagesEventImpl value, $Res Function(_$LoadImagesEventImpl) then) =
       __$$LoadImagesEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int currentPage});
@@ -91,8 +88,7 @@ abstract class _$$LoadImagesEventImplCopyWith<$Res> {
 class __$$LoadImagesEventImplCopyWithImpl<$Res>
     extends _$CoffeeImageViewerEventCopyWithImpl<$Res, _$LoadImagesEventImpl>
     implements _$$LoadImagesEventImplCopyWith<$Res> {
-  __$$LoadImagesEventImplCopyWithImpl(
-      _$LoadImagesEventImpl _value, $Res Function(_$LoadImagesEventImpl) _then)
+  __$$LoadImagesEventImplCopyWithImpl(_$LoadImagesEventImpl _value, $Res Function(_$LoadImagesEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoffeeImageViewerEvent
@@ -129,8 +125,7 @@ class _$LoadImagesEventImpl implements LoadImagesEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadImagesEventImpl &&
-            (identical(other.currentPage, currentPage) ||
-                other.currentPage == currentPage));
+            (identical(other.currentPage, currentPage) || other.currentPage == currentPage));
   }
 
   @override
@@ -142,8 +137,7 @@ class _$LoadImagesEventImpl implements LoadImagesEvent {
   @override
   @pragma('vm:prefer-inline')
   _$$LoadImagesEventImplCopyWith<_$LoadImagesEventImpl> get copyWith =>
-      __$$LoadImagesEventImplCopyWithImpl<_$LoadImagesEventImpl>(
-          this, _$identity);
+      __$$LoadImagesEventImplCopyWithImpl<_$LoadImagesEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -216,14 +210,13 @@ abstract class LoadImagesEvent implements CoffeeImageViewerEvent {
   /// Create a copy of CoffeeImageViewerEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadImagesEventImplCopyWith<_$LoadImagesEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LoadImagesEventImplCopyWith<_$LoadImagesEventImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$ToggleSaveImageEventImplCopyWith<$Res> {
-  factory _$$ToggleSaveImageEventImplCopyWith(_$ToggleSaveImageEventImpl value,
-          $Res Function(_$ToggleSaveImageEventImpl) then) =
+  factory _$$ToggleSaveImageEventImplCopyWith(
+          _$ToggleSaveImageEventImpl value, $Res Function(_$ToggleSaveImageEventImpl) then) =
       __$$ToggleSaveImageEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String url});
@@ -231,11 +224,10 @@ abstract class _$$ToggleSaveImageEventImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ToggleSaveImageEventImplCopyWithImpl<$Res>
-    extends _$CoffeeImageViewerEventCopyWithImpl<$Res,
-        _$ToggleSaveImageEventImpl>
+    extends _$CoffeeImageViewerEventCopyWithImpl<$Res, _$ToggleSaveImageEventImpl>
     implements _$$ToggleSaveImageEventImplCopyWith<$Res> {
-  __$$ToggleSaveImageEventImplCopyWithImpl(_$ToggleSaveImageEventImpl _value,
-      $Res Function(_$ToggleSaveImageEventImpl) _then)
+  __$$ToggleSaveImageEventImplCopyWithImpl(
+      _$ToggleSaveImageEventImpl _value, $Res Function(_$ToggleSaveImageEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoffeeImageViewerEvent
@@ -283,10 +275,8 @@ class _$ToggleSaveImageEventImpl implements ToggleSaveImageEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ToggleSaveImageEventImplCopyWith<_$ToggleSaveImageEventImpl>
-      get copyWith =>
-          __$$ToggleSaveImageEventImplCopyWithImpl<_$ToggleSaveImageEventImpl>(
-              this, _$identity);
+  _$$ToggleSaveImageEventImplCopyWith<_$ToggleSaveImageEventImpl> get copyWith =>
+      __$$ToggleSaveImageEventImplCopyWithImpl<_$ToggleSaveImageEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -352,20 +342,17 @@ class _$ToggleSaveImageEventImpl implements ToggleSaveImageEvent {
 }
 
 abstract class ToggleSaveImageEvent implements CoffeeImageViewerEvent {
-  const factory ToggleSaveImageEvent(final String url) =
-      _$ToggleSaveImageEventImpl;
+  const factory ToggleSaveImageEvent(final String url) = _$ToggleSaveImageEventImpl;
 
   String get url;
 
   /// Create a copy of CoffeeImageViewerEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ToggleSaveImageEventImplCopyWith<_$ToggleSaveImageEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$ToggleSaveImageEventImplCopyWith<_$ToggleSaveImageEventImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
-CoffeeImageViewerState _$CoffeeImageViewerStateFromJson(
-    Map<String, dynamic> json) {
+CoffeeImageViewerState _$CoffeeImageViewerStateFromJson(Map<String, dynamic> json) {
   return _CoffeeImageViewerState.fromJson(json);
 }
 
@@ -385,14 +372,12 @@ mixin _$CoffeeImageViewerState {
   /// Create a copy of CoffeeImageViewerState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CoffeeImageViewerStateCopyWith<CoffeeImageViewerState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CoffeeImageViewerStateCopyWith<CoffeeImageViewerState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CoffeeImageViewerStateCopyWith<$Res> {
-  factory $CoffeeImageViewerStateCopyWith(CoffeeImageViewerState value,
-          $Res Function(CoffeeImageViewerState) then) =
+  factory $CoffeeImageViewerStateCopyWith(CoffeeImageViewerState value, $Res Function(CoffeeImageViewerState) then) =
       _$CoffeeImageViewerStateCopyWithImpl<$Res, CoffeeImageViewerState>;
   @useResult
   $Res call(
@@ -406,8 +391,7 @@ abstract class $CoffeeImageViewerStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CoffeeImageViewerStateCopyWithImpl<$Res,
-        $Val extends CoffeeImageViewerState>
+class _$CoffeeImageViewerStateCopyWithImpl<$Res, $Val extends CoffeeImageViewerState>
     implements $CoffeeImageViewerStateCopyWith<$Res> {
   _$CoffeeImageViewerStateCopyWithImpl(this._value, this._then);
 
@@ -463,11 +447,9 @@ class _$CoffeeImageViewerStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$CoffeeImageViewerStateImplCopyWith<$Res>
-    implements $CoffeeImageViewerStateCopyWith<$Res> {
+abstract class _$$CoffeeImageViewerStateImplCopyWith<$Res> implements $CoffeeImageViewerStateCopyWith<$Res> {
   factory _$$CoffeeImageViewerStateImplCopyWith(
-          _$CoffeeImageViewerStateImpl value,
-          $Res Function(_$CoffeeImageViewerStateImpl) then) =
+          _$CoffeeImageViewerStateImpl value, $Res Function(_$CoffeeImageViewerStateImpl) then) =
       __$$CoffeeImageViewerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -483,12 +465,10 @@ abstract class _$$CoffeeImageViewerStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$CoffeeImageViewerStateImplCopyWithImpl<$Res>
-    extends _$CoffeeImageViewerStateCopyWithImpl<$Res,
-        _$CoffeeImageViewerStateImpl>
+    extends _$CoffeeImageViewerStateCopyWithImpl<$Res, _$CoffeeImageViewerStateImpl>
     implements _$$CoffeeImageViewerStateImplCopyWith<$Res> {
   __$$CoffeeImageViewerStateImplCopyWithImpl(
-      _$CoffeeImageViewerStateImpl _value,
-      $Res Function(_$CoffeeImageViewerStateImpl) _then)
+      _$CoffeeImageViewerStateImpl _value, $Res Function(_$CoffeeImageViewerStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoffeeImageViewerState
@@ -603,19 +583,13 @@ class _$CoffeeImageViewerStateImpl implements _CoffeeImageViewerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoffeeImageViewerStateImpl &&
-            (identical(other.loadingImage, loadingImage) ||
-                other.loadingImage == loadingImage) &&
-            (identical(other.savingImage, savingImage) ||
-                other.savingImage == savingImage) &&
-            (identical(other.currentPage, currentPage) ||
-                other.currentPage == currentPage) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
+            (identical(other.loadingImage, loadingImage) || other.loadingImage == loadingImage) &&
+            (identical(other.savingImage, savingImage) || other.savingImage == savingImage) &&
+            (identical(other.currentPage, currentPage) || other.currentPage == currentPage) &&
+            (identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
-            const DeepCollectionEquality()
-                .equals(other._savedImages, _savedImages) &&
-            const DeepCollectionEquality()
-                .equals(other._imageWindow, _imageWindow));
+            const DeepCollectionEquality().equals(other._savedImages, _savedImages) &&
+            const DeepCollectionEquality().equals(other._imageWindow, _imageWindow));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -635,9 +609,8 @@ class _$CoffeeImageViewerStateImpl implements _CoffeeImageViewerState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CoffeeImageViewerStateImplCopyWith<_$CoffeeImageViewerStateImpl>
-      get copyWith => __$$CoffeeImageViewerStateImplCopyWithImpl<
-          _$CoffeeImageViewerStateImpl>(this, _$identity);
+  _$$CoffeeImageViewerStateImplCopyWith<_$CoffeeImageViewerStateImpl> get copyWith =>
+      __$$CoffeeImageViewerStateImplCopyWithImpl<_$CoffeeImageViewerStateImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -657,8 +630,7 @@ abstract class _CoffeeImageViewerState implements CoffeeImageViewerState {
       final List<String> savedImages,
       final Set<int> imageWindow}) = _$CoffeeImageViewerStateImpl;
 
-  factory _CoffeeImageViewerState.fromJson(Map<String, dynamic> json) =
-      _$CoffeeImageViewerStateImpl.fromJson;
+  factory _CoffeeImageViewerState.fromJson(Map<String, dynamic> json) = _$CoffeeImageViewerStateImpl.fromJson;
 
   @override
   bool get loadingImage;
@@ -679,6 +651,6 @@ abstract class _CoffeeImageViewerState implements CoffeeImageViewerState {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CoffeeImageViewerStateImplCopyWith<_$CoffeeImageViewerStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$CoffeeImageViewerStateImplCopyWith<_$CoffeeImageViewerStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
