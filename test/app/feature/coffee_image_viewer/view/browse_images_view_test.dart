@@ -133,8 +133,10 @@ void main() {
         await tester.pump(const Duration(milliseconds: 50));
         await tester.tap(coffeeImageFinder);
         await tester.pumpAndSettle();
-        verify(() => mockCoffeeImageViewerBloc
-            .add(const ToggleSaveImageEvent(imageUrl)),).called(1);
+        verify(
+          () => mockCoffeeImageViewerBloc
+              .add(const ToggleSaveImageEvent(imageUrl)),
+        ).called(1);
       });
     });
 
@@ -167,8 +169,10 @@ void main() {
         when(() => mockConnectivityCubit.state).thenReturn(testConnectivity);
         await tester.pumpApp(const BrowseImagesView());
         expect(find.text('No connection'), findsOneWidget);
-        expect(find.byIcon(Icons.signal_wifi_statusbar_connected_no_internet_4),
-            findsOneWidget,);
+        expect(
+          find.byIcon(Icons.signal_wifi_statusbar_connected_no_internet_4),
+          findsOneWidget,
+        );
       });
 
       testWidgets('does not show connection warning when connectivity is true',
@@ -177,8 +181,10 @@ void main() {
         when(() => mockConnectivityCubit.state).thenReturn(testConnectivity);
         await tester.pumpApp(const BrowseImagesView());
         expect(find.text('No connection'), findsNothing);
-        expect(find.byIcon(Icons.signal_wifi_statusbar_connected_no_internet_4),
-            findsNothing,);
+        expect(
+          find.byIcon(Icons.signal_wifi_statusbar_connected_no_internet_4),
+          findsNothing,
+        );
       });
     });
   });

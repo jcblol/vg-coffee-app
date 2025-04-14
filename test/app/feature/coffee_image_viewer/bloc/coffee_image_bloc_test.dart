@@ -45,14 +45,20 @@ void main() {
               .having((s) => s.loadingImage, 'loadingImage', true)
               .having((s) => s.currentPage, 'currentPage', 0)
               .having((s) => s.images.length, 'images loaded', 5)
-              .having((s) => s.imageWindow.isEmpty,
-                  'imageWindow is empty initially', true,),
+              .having(
+                (s) => s.imageWindow.isEmpty,
+                'imageWindow is empty initially',
+                true,
+              ),
           isA<CoffeeImageViewerState>()
               .having((s) => s.loadingImage, 'loadingImage', false)
               .having((s) => s.currentPage, 'currentPage', 0)
               .having((s) => s.images.length, 'total images', 5)
               .having(
-                  (s) => s.imageWindow, 'imageWindow', equals({0, 1, 2, 3, 4}),),
+                (s) => s.imageWindow,
+                'imageWindow',
+                equals({0, 1, 2, 3, 4}),
+              ),
         ],
       );
       blocTest<CoffeeImageViewerBloc, CoffeeImageViewerState>(
@@ -81,8 +87,11 @@ void main() {
               .having((s) => s.loadingImage, 'loadingImage', false)
               .having((s) => s.currentPage, 'currentPage', 20)
               .having((s) => s.images.length, 'total images', 25)
-              .having((s) => s.imageWindow, 'imageWindow',
-                  equals({15, 16, 17, 18, 19, 20, 21, 22, 23, 24}),),
+              .having(
+                (s) => s.imageWindow,
+                'imageWindow',
+                equals({15, 16, 17, 18, 19, 20, 21, 22, 23, 24}),
+              ),
         ],
       );
       blocTest<CoffeeImageViewerBloc, CoffeeImageViewerState>(
@@ -101,8 +110,11 @@ void main() {
               .having((s) => s.errorMessage, 'errorMessage', null),
           isA<CoffeeImageViewerState>()
               .having((s) => s.loadingImage, 'loadingImage', false)
-              .having((s) => s.errorMessage, 'errorMessage',
-                  'Failed to load image',),
+              .having(
+                (s) => s.errorMessage,
+                'errorMessage',
+                'Failed to load image',
+              ),
         ],
       );
     });
@@ -144,14 +156,18 @@ void main() {
           return CoffeeImageViewerBloc(mockCoffeeRepo, mockCacheService);
         },
         act: (bloc) => bloc.add(
-            const CoffeeImageViewerEvent.toggleSaveImageEvent('url_error'),),
+          const CoffeeImageViewerEvent.toggleSaveImageEvent('url_error'),
+        ),
         expect: () => [
           isA<CoffeeImageViewerState>()
               .having((s) => s.savingImage, 'savingImage', true),
           isA<CoffeeImageViewerState>()
               .having((s) => s.savingImage, 'savingImage', false)
-              .having((s) => s.errorMessage, 'errorMessage',
-                  'Failed to update toggle image save',),
+              .having(
+                (s) => s.errorMessage,
+                'errorMessage',
+                'Failed to update toggle image save',
+              ),
         ],
       );
       blocTest<CoffeeImageViewerBloc, CoffeeImageViewerState>(
@@ -163,14 +179,18 @@ void main() {
         },
         seed: () => const CoffeeImageViewerState(savedImages: ['url_error']),
         act: (bloc) => bloc.add(
-            const CoffeeImageViewerEvent.toggleSaveImageEvent('url_error'),),
+          const CoffeeImageViewerEvent.toggleSaveImageEvent('url_error'),
+        ),
         expect: () => [
           isA<CoffeeImageViewerState>()
               .having((s) => s.savingImage, 'savingImage', true),
           isA<CoffeeImageViewerState>()
               .having((s) => s.savingImage, 'savingImage', false)
-              .having((s) => s.errorMessage, 'errorMessage',
-                  'Failed to update toggle image save',),
+              .having(
+                (s) => s.errorMessage,
+                'errorMessage',
+                'Failed to update toggle image save',
+              ),
         ],
       );
     });

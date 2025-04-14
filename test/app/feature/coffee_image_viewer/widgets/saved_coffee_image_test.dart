@@ -40,8 +40,10 @@ void main() {
       final removeButtonFinder = find.byIcon(Icons.remove_circle_outline);
       expect(removeButtonFinder, findsOneWidget);
       await tester.tap(removeButtonFinder);
-      verify(() => mockCoffeeImageViewerBloc
-          .add(const ToggleSaveImageEvent(imageUrl)),).called(1);
+      verify(
+        () =>
+            mockCoffeeImageViewerBloc.add(const ToggleSaveImageEvent(imageUrl)),
+      ).called(1);
     });
   });
 }

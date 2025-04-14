@@ -29,7 +29,9 @@ class SavedImagesView extends StatelessWidget {
           itemCount: savedImages.length,
           itemBuilder: (context, index) {
             return SavedCoffeeImage(
-                key: ValueKey(savedImages[index]), savedImages[index],);
+              key: ValueKey(savedImages[index]),
+              savedImages[index],
+            );
           },
         );
       },
