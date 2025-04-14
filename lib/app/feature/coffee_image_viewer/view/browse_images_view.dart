@@ -41,14 +41,14 @@ class _BrowseImagesViewState extends State<BrowseImagesView> {
             shape: const CircleBorder(),
             onPressed: () => _pageController.previousPage(
                 duration: const Duration(milliseconds: 250),
-                curve: Curves.easeInOut),
+                curve: Curves.easeInOut,),
             child: const Icon(Icons.arrow_upward),
           ),
           FloatingActionButton.small(
             shape: const CircleBorder(),
             onPressed: () => _pageController.nextPage(
                 duration: const Duration(milliseconds: 250),
-                curve: Curves.easeInOut),
+                curve: Curves.easeInOut,),
             child: const Icon(Icons.arrow_downward),
           ),
           const SizedBox(height: 10),

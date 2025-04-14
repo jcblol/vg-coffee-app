@@ -14,9 +14,9 @@ class AppRouter {
         );
       },
       navigatorContainerBuilder: (BuildContext context,
-          StatefulNavigationShell navigationShell, List<Widget> children) {
+          StatefulNavigationShell navigationShell, List<Widget> children,) {
         return BottomNavigationWrapper(
-            navigationShell: navigationShell, children: children);
+            navigationShell: navigationShell, children: children,);
       },
       branches: [
         StatefulShellBranch(

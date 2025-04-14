@@ -134,7 +134,7 @@ void main() {
         await tester.tap(coffeeImageFinder);
         await tester.pumpAndSettle();
         verify(() => mockCoffeeImageViewerBloc
-            .add(const ToggleSaveImageEvent(imageUrl))).called(1);
+            .add(const ToggleSaveImageEvent(imageUrl)),).called(1);
       });
     });
 
@@ -168,7 +168,7 @@ void main() {
         await tester.pumpApp(const BrowseImagesView());
         expect(find.text('No connection'), findsOneWidget);
         expect(find.byIcon(Icons.signal_wifi_statusbar_connected_no_internet_4),
-            findsOneWidget);
+            findsOneWidget,);
       });
 
       testWidgets('does not show connection warning when connectivity is true',
@@ -178,7 +178,7 @@ void main() {
         await tester.pumpApp(const BrowseImagesView());
         expect(find.text('No connection'), findsNothing);
         expect(find.byIcon(Icons.signal_wifi_statusbar_connected_no_internet_4),
-            findsNothing);
+            findsNothing,);
       });
     });
   });

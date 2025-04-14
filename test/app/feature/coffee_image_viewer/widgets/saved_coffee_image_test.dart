@@ -41,7 +41,7 @@ void main() {
       expect(removeButtonFinder, findsOneWidget);
       await tester.tap(removeButtonFinder);
       verify(() => mockCoffeeImageViewerBloc
-          .add(const ToggleSaveImageEvent(imageUrl))).called(1);
+          .add(const ToggleSaveImageEvent(imageUrl)),).called(1);
     });
   });
 }

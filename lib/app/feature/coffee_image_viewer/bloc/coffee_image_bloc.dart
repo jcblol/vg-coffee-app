@@ -27,7 +27,7 @@ class CoffeeImageViewerBloc
   // caches a list of urls in our bloc state
   // caches saved image files for use offline
   Future<void> _toggleSave(
-      ToggleSaveImageEvent event, Emitter<CoffeeImageViewerState> emit) async {
+      ToggleSaveImageEvent event, Emitter<CoffeeImageViewerState> emit,) async {
     emit(state.copyWith(savingImage: true));
     try {
       final updatedSavedImages = List<String>.from(state.savedImages);
@@ -42,7 +42,7 @@ class CoffeeImageViewerBloc
     } catch (e) {
       emit(state.copyWith(
           errorMessage: 'Failed to update toggle image save',
-          savingImage: false));
+          savingImage: false,),);
       print(e);
     }
   }
@@ -50,34 +50,34 @@ class CoffeeImageViewerBloc
   // loads 5 images in advance
   // sets our expected image window for caching based on the current page
   Future<void> _loadImages(
-      LoadImagesEvent event, Emitter<CoffeeImageViewerState> emit) async {
+      LoadImagesEvent event, Emitter<CoffeeImageViewerState> emit,) async {
     try {
       final numImagesToLoad =
           max(0, event.currentPage - state.images.length + 5);
       emit(state.copyWith(
           loadingImage: true,
           errorMessage: null,
-          currentPage: event.currentPage));
+          currentPage: event.currentPage,),);
 
       if (numImagesToLoad > 0) {
         final newImages = await Future.wait(
-            List.generate(numImagesToLoad, (_) => _repo.getCoffeeImage()));
+            List.generate(numImagesToLoad, (_) => _repo.getCoffeeImage()),);
         emit(state.copyWith(
             images: List.from(state.images)
-              ..addAll(newImages.map((image) => image.file))));
+              ..addAll(newImages.map((image) => image.file)),),);
       }
 
       final totalImages = state.images.length;
       final int windowStart = (event.currentPage - 5).clamp(0, totalImages - 1);
       final int windowEnd = (event.currentPage + 5).clamp(0, totalImages - 1);
       final Set<int> imageWindow = {
-        for (int i = windowStart; i <= windowEnd; i++) i
+        for (int i = windowStart; i <= windowEnd; i++) i,
       };
 
       emit(state.copyWith(imageWindow: imageWindow, loadingImage: false));
     } catch (e) {
       emit(state.copyWith(
-          loadingImage: false, errorMessage: 'Failed to load image'));
+          loadingImage: false, errorMessage: 'Failed to load image',),);
       print(e);
     }
   }
