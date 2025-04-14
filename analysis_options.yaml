@@ -6,6 +6,8 @@ linter:
     sort_pub_dependencies: false
     eol_at_end_of_file: false
     omit_local_variable_types: false
+    avoid_print: false
+    require_trailing_commas: false
 analyzer:
   errors:
     invalid_annotation_target: ignore
